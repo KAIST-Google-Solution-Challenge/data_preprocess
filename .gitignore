@@ -6,6 +6,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+__pycache__/
 
 ## Resource Not Shared
 audios/
@@ -14,3 +15,10 @@ videos/
 
 ## Test File For Experiments
 test.py
+__pycache__/logger.cpython-38.pyc
+*.wav
+*.mp3
+*.mp4
+
+## Temporary
+video_clip_src.py

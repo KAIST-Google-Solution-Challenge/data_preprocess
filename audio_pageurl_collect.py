@@ -1,57 +1,19 @@
-from selenium import webdriver
 from bs4 import BeautifulSoup
-import re
-import time
-from webdriver_manager.chrome import ChromeDriverManager
-import logging
-from colorlog import ColoredFormatter
 import pdb
 import requests
 import pandas as pd
+from logger import getLogger
 
 # 로그 생성
-logger = logging.getLogger()
-logger.handlers = []       # No duplicated handlers
-logger.propagate = False   # workaround for duplicated logs in ipython
+lg = getLogger()
 
-# 로그의 출력 기준 설정
-logger.setLevel(logging.DEBUG)
-
-# log 출력 형식
-# formatter = logging.Formatter('\033[92m[%(asctime)s] - [%(name)s] - [%(levelname)s] - %(message)s\033[0m')
-formatter = ColoredFormatter(
-    # "%(log_color)s[%(asctime)s] %(message)s",
-    '%(log_color)s [%(asctime)s] - [%(name)s] - [%(levelname)s] - %(message)s',
-    datefmt=None,
-    reset=True,
-    log_colors={
-        'DEBUG':    'blue',
-        'INFO':     'white,bold',
-        'INFOV':    'cyan,bold',
-        'WARNING':  'yellow',
-        'ERROR':    'red,bold',
-        'CRITICAL': 'red,bg_white',
-    },
-    secondary_log_colors={},
-    style='%'
-)
-# log 출력
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(formatter)
-logger.addHandler(stream_handler)
-
-# import urllib.request
-# ...
-# video_url = video.get_property('src')
-# urllib.request.urlretrieve(video_url, 'videoname.mp4')
 
 
 
 def get_search_url(index: int):
     # url = f"https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691&bbsId=&cl1Cd=&pageIndex={index}&sdate=&edate=&searchCnd=1&searchWrd="
-    url = f"https://www.fss.or.kr/fss/bbs/B0000203/list.do?menuNo=200686&bbsId=&cl1Cd=&pageIndex={index}&sdate=&edate=&searchCnd=1&searchWrd="
-    
-    logger.debug(f"fetched url: {url}")
+    url = f"https://www.fss.or.kr/fss/bbs/B0000206/list.do?menuNo=200690&bbsId=&cl1Cd=&pageIndex={index}&sdate=&edate=&searchCnd=1&searchWrd="
+    lg.debug(f"fetched url: {url}")
     return url
 
 # def select_first(driver):
@@ -74,19 +36,19 @@ def getUrlList(page_source: str):
 
     try:
         # content = soup.select('.bd-list tbody')[0].text
-        table = soup.select('.bd-list-thumb-a ul li')
-        logger.debug(f"table content: {table}")
-        for li in table:
-            # logger.warning("1")
-            srcUrl = li.select_one('a')["href"]
+        table = soup.select('.bd-list tbody tr')
+        lg.debug(f"table content: {table}")
+        for tr in table:
+            # lg.warning("1")
+            srcUrl = tr.select_one('td:nth-child(2) a')["href"]
             srcUrls.append('https://www.fss.or.kr'+srcUrl)
             
-            # logger.warning("2")
-            # logger.debug(f"srcUrl: {srcUrl}")
-            # logger.warning("3")
+            # lg.warning("2")
+            # lg.debug(f"srcUrl: {srcUrl}")
+            # lg.warning("3")
         # print(f'\033[93m after table \033[0m')
     except Exception as e:
-        logger.error(f"error: {e}")
+        lg.error(f"error: {e}")
         
     return srcUrls
 
@@ -103,12 +65,10 @@ def getUrlList(page_source: str):
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 
-# srcUrls = pd.read_csv("voice_phishing_data_urls.csv")['url'].tolist()
-srcUrls = list()
-
-for index in range(1, 11):
+srcUrls = pd.read_csv("voice_phishing_data_urls.csv")['url'].tolist()
+for index in range(1, 19):
     response = requests.get(get_search_url(index))
-    logger.info(f"{index}th driver get successful")
+    lg.info(f"{index}th driver get successful")
     # time.sleep(5)
     srcUrls += getUrlList(response.content)
 
@@ -117,7 +77,7 @@ for index in range(1, 11):
 results_df = pd.DataFrame(srcUrls)
 # print(results_df)
 results_df.columns = ['url']
-results_df.to_csv('video_urls.csv', index=False)
+results_df.to_csv('audio_pageurl.csv', index=False)
 
 
 # content = getUrlList(driver)
