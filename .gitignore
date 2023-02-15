@@ -11,6 +11,9 @@ __pycache__/
 ## Resource Not Shared
 audios/
 videos/
+audios_converted/
+videos_converted/
+videos_trimmed/
 *.csv
 
 ## Test File For Experiments
