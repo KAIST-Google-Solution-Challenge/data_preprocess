@@ -6,19 +6,19 @@ import numpy as np
 
 lg = getLogger()
 
-def trim_audio_data(source, source_trimmed):
+def trimAudioData(source, sourceTrimmed):
     try:
         # sr = librosa.get_samplerate(source)
 
-        start_trim_sec = 10
-        end_trim_sec = 5
+        startTrimSec = 10
+        endTrimSec = 5
         y, sr = librosa.load(source, sr=None)
 
-        ny = y[sr*start_trim_sec: -sr*end_trim_sec]
+        ny = y[sr*startTrimSec: -sr*endTrimSec]
 
-        # librosa.output.write_wav(source_trimmed+'_tr.mp3', ny, sr)
+        # librosa.output.write_wav(sourceTrimmed+'_tr.mp3', ny, sr)
         
-        sf.write(source_trimmed+'_tr.wav', ny, sr, 'PCM_16')
+        sf.write(sourceTrimmed+'_tr.wav', ny, sr, 'PCM_16')
 
         lg.debug('Trimmed audio data')
 
@@ -26,14 +26,14 @@ def trim_audio_data(source, source_trimmed):
         lg.error(e)
 
 
-source_path = 'videos_converted/'
-save_path = 'videos_trimmed/'
+sourcePath = 'videos_converted/'
+savePath = 'videos_trimmed/'
 
-src_list = os.listdir(source_path)
+src_list = os.listdir(sourcePath)
 
 for source in src_list:
     if source.find('.wav') != -1:
-        source_trimmed = save_path + source[:-4]
-        source = source_path + source
+        sourceTrimmed = savePath + source[:-4]
+        source = sourcePath + source
 
-        trim_audio_data(source, source_trimmed)
+        trimAudioData(source, sourceTrimmed)

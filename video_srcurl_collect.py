@@ -8,10 +8,10 @@ from logger import getLogger
 # 로그 생성
 lg = getLogger()
 
-def getSource(page_source: str):
+def getSource(pageSource: str):
 
     # pdb.set_trace()
-    html = page_source
+    html = pageSource
     soup = BeautifulSoup(html, "lxml")
     # soup = BeautifulSoup(r.content,"html.parser")
     
@@ -49,22 +49,7 @@ for index, url in enumerate(srcUrls):
     lg.info(f"{index}th url get successful")
     data.append(getSource(response.content))
     
-    # if index == 300:
-    #     break
-    
 
-
-
-results_df = pd.DataFrame(data)
-# print(results_df)
-# results_df.columns = ['v']
-results_df.to_csv('video_srcurl_utf8.csv', index=False)
-results_df.to_csv('video_srcurl_cp949.csv', index=False, encoding='cp949')
-
-
-# content = getUrlList(driver)
-
-# lg.debug(content)
-
-# https://www.fss.or.kr
-
+resultsDf = pd.DataFrame(data)
+resultsDf.to_csv('video_srcurl_utf8.csv', index=False)
+resultsDf.to_csv('video_srcurl_cp949.csv', index=False, encoding='cp949')

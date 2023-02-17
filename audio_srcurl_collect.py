@@ -10,10 +10,10 @@ from logger import getLogger
 # 로그 생성
 lg = getLogger()
 
-def getSource(page_source: str):
+def getSource(pageSource: str):
 
     # pdb.set_trace()
-    html = page_source
+    html = pageSource
     soup = BeautifulSoup(html, "lxml")
     # soup = BeautifulSoup(r.content,"html.parser")
     
@@ -68,11 +68,11 @@ for index, url in enumerate(srcUrls):
 
 
 
-results_df = pd.DataFrame(data)
-# print(results_df)
-# results_df.columns = ['videosource_url', 'transcript']
-results_df.to_csv('audio_srcurl_utf8.csv', index=False)
-results_df.to_csv('audio_srcurl_cp949.csv', index=False, encoding='cp949')
+resultsDf = pd.DataFrame(data)
+# print(resultsDf)
+# resultsDf.columns = ['videosource_url', 'transcript']
+resultsDf.to_csv('audio_srcurl_utf8.csv', index=False)
+resultsDf.to_csv('audio_srcurl_cp949.csv', index=False, encoding='cp949')
 
 dataWithTranscripts = data.loc[pd.notna(data['1']), '1':]
 dataWithoutTranscripts = data.loc[pd.isna(data['1']), '0']

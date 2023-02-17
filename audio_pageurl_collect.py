@@ -10,7 +10,7 @@ lg = getLogger()
 
 
 
-def get_search_url(index: int):
+def getSearchUrl(index: int):
     # url = f"https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691&bbsId=&cl1Cd=&pageIndex={index}&sdate=&edate=&searchCnd=1&searchWrd="
     url = f"https://www.fss.or.kr/fss/bbs/B0000206/list.do?menuNo=200690&bbsId=&cl1Cd=&pageIndex={index}&sdate=&edate=&searchCnd=1&searchWrd="
     lg.debug(f"fetched url: {url}")
@@ -21,12 +21,12 @@ def get_search_url(index: int):
 #     first.click()
 #     time.sleep(3)
 
-def getUrlList(page_source: str):
+def getUrlList(pageSource: str):
 
     # pdb.set_trace()
     # print(f'\033[93m after start \033[0m')
-    html = page_source
-    # print(f'\033[93m after html page_source \033[0m')
+    html = pageSource
+    # print(f'\033[93m after html pageSource \033[0m')
     # print(html[:100])
     soup = BeautifulSoup(html, "lxml")
     # soup = BeautifulSoup(r.content,"html.parser")
@@ -67,17 +67,17 @@ def getUrlList(page_source: str):
 
 srcUrls = pd.read_csv("voice_phishing_data_urls.csv")['url'].tolist()
 for index in range(1, 19):
-    response = requests.get(get_search_url(index))
+    response = requests.get(getSearchUrl(index))
     lg.info(f"{index}th driver get successful")
     # time.sleep(5)
     srcUrls += getUrlList(response.content)
 
 
 
-results_df = pd.DataFrame(srcUrls)
-# print(results_df)
-results_df.columns = ['url']
-results_df.to_csv('audio_pageurl.csv', index=False)
+resultsDf = pd.DataFrame(srcUrls)
+# print(resultsDf)
+resultsDf.columns = ['url']
+resultsDf.to_csv('audio_pageurl.csv', index=False)
 
 
 # content = getUrlList(driver)
@@ -105,7 +105,7 @@ results_df.to_csv('audio_pageurl.csv', index=False)
 # # word = input("검색어를 입력하세요 : ")
 # word = "kingcharles"
 # word = str(word)
-# url = get_search_url(word)
+# url = getSearchUrl(word)
 
 # driver.get(url)
 # time.sleep(10)
@@ -134,7 +134,7 @@ results_df.to_csv('audio_pageurl.csv', index=False)
 
 # date = datetime.today().strftime('%Y-%m-%d')
 
-# results_df = pd.DataFrame(results)
-# print(results_df)
-# results_df.columns = ['content', 'date', 'like', 'place', 'tags']
-# results_df.to_csv(date + '_about' + word + ' insta crawling.csv')
+# resultsDf = pd.DataFrame(results)
+# print(resultsDf)
+# resultsDf.columns = ['content', 'date', 'like', 'place', 'tags']
+# resultsDf.to_csv(date + '_about' + word + ' insta crawling.csv')

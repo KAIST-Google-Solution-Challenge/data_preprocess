@@ -5,11 +5,11 @@ from pydub import AudioSegment
 
 lg = getLogger()
 
-def convert_audio(source, source_converted):
+def convertAudio(source, sourceConverted):
     try:
         # sound = AudioSegment.from_mp3(source)
         sound = AudioSegment.from_file(source)
-        sound.export(source_converted, format="wav")
+        sound.export(sourceConverted, format="wav")
 
         lg.debug("Converted mp3 to wav")
 
@@ -17,17 +17,17 @@ def convert_audio(source, source_converted):
         lg.error(e)
 
 
-source_path = 'audios/'
-save_path = 'audios_converted/'
+sourcePath = 'audios/'
+savePath = 'audios_converted/'
 
-src_list = os.listdir(source_path)
+srcList = os.listdir(sourcePath)
 
-for index, source in enumerate(src_list):
+for index, source in enumerate(srcList):
     if source.find('.mp3') != -1:
         lg.warning(f'Source {index}: {source}')
-        source_converted = save_path + source[:-4] + '.wav'
-        source = source_path + source
+        sourceConverted = savePath + source[:-4] + '.wav'
+        source = sourcePath + source
 
-        convert_audio(source, source_converted)
+        convertAudio(source, sourceConverted)
         lg.warning(f'successfully converted')
 

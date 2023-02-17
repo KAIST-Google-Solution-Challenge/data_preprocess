@@ -4,26 +4,26 @@ from moviepy.editor import *
 
 lg = getLogger()
 
-def convert_video(source, source_converted):
+def convert_video(source, sourceConverted):
     try:
         audClip = AudioFileClip(source)
-        audClip.write_audiofile(source_converted + '.wav')
+        audClip.write_audiofile(sourceConverted + '.wav')
         lg.debug('Trimmed audio data')
     except Exception as e:
         lg.error(e)
 
 
-source_path = 'videos/'
-save_path = 'videos_converted/'
+sourcePath = 'videos/'
+savePath = 'videos_converted/'
 
-src_list = os.listdir(source_path)
+src_list = os.listdir(sourcePath)
 
 for index, source in enumerate(src_list):
     if source.find('.mp4') != -1:
-        source_converted = save_path + source[:-4]
-        source = source_path + source
+        sourceConverted = savePath + source[:-4]
+        source = sourcePath + source
 
-        convert_video(source, source_converted)
+        convert_video(source, sourceConverted)
     lg.debug(f'successfully converted {index}th video')
 
     

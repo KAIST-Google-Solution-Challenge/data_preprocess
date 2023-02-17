@@ -29,8 +29,8 @@ def getLogger():
         style='%'
     )
     # log 출력
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
+    streamHandler = logging.StreamHandler()
+    streamHandler.setFormatter(formatter)
+    logger.addHandler(streamHandler)
     
     return logger;
