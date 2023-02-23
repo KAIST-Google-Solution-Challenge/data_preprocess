@@ -24,4 +24,4 @@ __pycache__/logger.cpython-38.pyc
 *.mp4
 
 ## Temporary
-speech_to_text.py
+# speech_to_text.py
