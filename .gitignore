@@ -14,6 +14,8 @@ videos/
 audios_converted/
 videos_converted/
 videos_trimmed/
+final_data/
+NIKL_DIALOGUE_2020_v1.3/
 *.csv
 
 ## Test File For Experiments
