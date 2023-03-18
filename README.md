@@ -41,7 +41,7 @@ python 3_audio_src_download.py
 python 4_audio_convert.py
 ```
 
-1. We should web-scrape the Video Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).
+2. We should web-scrape the Video Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).
 
 The Code below crawls through Financial Supervisory Service of Korea website, and collects the Video Files’ Urls from the website and downloads them, and trims/transforms them into suitable form. Those data will be used as voicephishing-positive train sets.
 
@@ -53,13 +53,13 @@ python 8_video_trim_src.py
 python 9_video_convert.py
 ```
 
-1. We should call speech to text api call from  [`Google Cloud Speech To Text`](https://cloud.google.com/speech-to-text/docs/libraries?hl=ko) following  [`This Link`](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/speech/longrunningrecognize) .
+3. We should call speech to text api call from  [`Google Cloud Speech To Text`](https://cloud.google.com/speech-to-text/docs/libraries?hl=ko) following  [`This Link`](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/speech/longrunningrecognize) .
 
 ```
 python 10_speech_to_text.py
 ```
 
-1. We should collect the voicephishing-negative train sets.
+4. We should collect the voicephishing-negative train sets.
 
 They can be achieved from [`National Institute of Korean Language`](https://corpus.korean.go.kr/request/reausetMain.do#none) .
 
