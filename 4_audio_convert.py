@@ -7,7 +7,6 @@ lg = getLogger()
 
 def convertAudio(source, sourceConverted):
     try:
-        # sound = AudioSegment.from_mp3(source)
         sound = AudioSegment.from_file(source)
         sound.export(sourceConverted, format="wav")
 

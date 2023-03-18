@@ -5,6 +5,7 @@ from logger import getLogger
 
 lg = getLogger()
 
+# concatenate corpuses into one.
 def concatenateCorpuses(corpuses):
     completeSentence = ''
     for index, corpus in enumerate(corpuses):
@@ -12,13 +13,11 @@ def concatenateCorpuses(corpuses):
         else: completeSentence += corpus
     return completeSentence
 
-
+# a list of multiple speeches. One element can be composed of multiple sentences, but they must be contiguous and spoken by one person.
 def corpusesToDialogue(filePath):
     with open(filePath, 'r', encoding='utf8') as file:
         jsonObject = json.load(file)
 
-    # print(jsonObject['document'])
-    # print(jsonObject)
     document = jsonObject['document'][0]
 
 
@@ -27,7 +26,6 @@ def corpusesToDialogue(filePath):
     currentSpeaker = 'SD2000001'
     oneSpeech = list()
     for corpusJson in document['utterance']:
-        # corpusList.append(corpusJson)
         if corpusJson['speaker_id'] != currentSpeaker:
             corpusList.append(concatenateCorpuses(oneSpeech))
             oneSpeech = [corpusJson['form']]
@@ -38,12 +36,11 @@ def corpusesToDialogue(filePath):
 
     return corpusList
 
+# make a list of sentences. each element is a sentence.
 def corpusesToSentences(filePath):
     with open(filePath, 'r', encoding='utf8') as file:
         jsonObject = json.load(file)
 
-    # print(jsonObject['document'])
-    # print(jsonObject)
     document = jsonObject['document'][0]
 
 
@@ -53,7 +50,6 @@ def corpusesToSentences(filePath):
     oneSpeech = list()
     currentCorpus = ''
     for corpusJson in document['utterance']:
-        # corpusList.append(corpusJson)
         if corpusJson['speaker_id'] != currentSpeaker or currentCorpus.endswith('?') or currentCorpus.endswith('!') or currentCorpus.endswith('.'):
             corpusList.append(concatenateCorpuses(oneSpeech))
             oneSpeech = [corpusJson['form']]
@@ -77,14 +73,7 @@ for fileName in jsonFiles:
     filePath = f'{directoryPath}/{fileName}'
     dialogue = corpusesToSentences(filePath)
     dialogues.append(dialogue)
-    
+
 
 dialoguesDataFrame = pd.DataFrame(dialogues)
 dialoguesDataFrame.to_csv('final_data/negative_data.csv', index = False)
-    
-    
-
-# # print(corpusesToDialogue(filePath))
-# for speech in corpusesToSentences(filePath):
-#     # lg.debug(speech)
-#     print(speech)

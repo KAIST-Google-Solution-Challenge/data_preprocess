@@ -25,5 +25,3 @@ for index, source in enumerate(src_list):
 
         convert_video(source, sourceConverted)
     lg.debug(f'successfully converted {index}th video')
-
-    

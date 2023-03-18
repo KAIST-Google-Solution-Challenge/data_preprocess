@@ -2,13 +2,11 @@ import os
 import librosa
 from logger import getLogger
 import soundfile as sf
-import numpy as np
 
 lg = getLogger()
 
 def trimAudioData(source, sourceTrimmed):
     try:
-        # sr = librosa.get_samplerate(source)
 
         startTrimSec = 10
         endTrimSec = 5
@@ -16,8 +14,6 @@ def trimAudioData(source, sourceTrimmed):
 
         ny = y[sr*startTrimSec: -sr*endTrimSec]
 
-        # librosa.output.write_wav(sourceTrimmed+'_tr.mp3', ny, sr)
-        
         sf.write(sourceTrimmed+'_tr.wav', ny, sr, 'PCM_16')
 
         lg.debug('Trimmed audio data')

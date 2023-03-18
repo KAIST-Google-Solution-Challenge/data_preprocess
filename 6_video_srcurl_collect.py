@@ -1,6 +1,4 @@
 from bs4 import BeautifulSoup
-import re
-import pdb
 import requests
 import pandas as pd
 from logger import getLogger
@@ -10,15 +8,12 @@ lg = getLogger()
 
 def getSource(pageSource: str):
 
-    # pdb.set_trace()
     html = pageSource
     soup = BeautifulSoup(html, "lxml")
-    # soup = BeautifulSoup(r.content,"html.parser")
     
     data = list()
 
     try:
-        # content = soup.select('.bd-list tbody')[0].text
         videoSource = soup.select_one('.file-list dd a')["href"]
         lg.warning(videoSource)
         data.append('https://www.fss.or.kr'+videoSource)
@@ -28,18 +23,6 @@ def getSource(pageSource: str):
         lg.error(f"error: {e}")
         
     return data[0]
-
-# def move_next(driver):
-#     right = driver.find_element_by_css_selector("div._aaqg._aaqh")
-#     right.click()
-#     time.sleep(2)
-
-# options = webdriver.ChromeOptions()
-# options.add_argument('--headless')        # Head-less 설정
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
-# # driver = webdriver.Chrome('chromedriver', options=options)
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 srcUrls = pd.read_csv("video_pageurl.csv")['url'].tolist()
 

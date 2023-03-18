@@ -1,10 +1,3 @@
-from bs4 import BeautifulSoup
-import re
-import time
-import logging
-from colorlog import ColoredFormatter
-import pdb
-import requests
 import pandas as pd
 from logger import getLogger
 
