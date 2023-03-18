@@ -68,3 +68,7 @@ The data is in form of each ‘corpus’es in json form, so we should tokenize a
 ```
 python 11_neg_dialogues_tokenize.py
 ```
+
+### Result
+
+You can check the final produced data in ['Here'](https://github.com/KAIST-Google-Solution-Challenge/train_dataset).
