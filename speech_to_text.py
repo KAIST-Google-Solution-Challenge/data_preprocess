@@ -3,6 +3,12 @@
 from google.cloud import speech
 import pandas as pd
 from logger import getLogger
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+PROJECT_NAME = os.environ.get('GCLOUD_PROJECT_NAME')
+BUCKET_NAME = os.environ.get('GCLOUD_BUCKET_NAME')
 
 
 lg = getLogger()
@@ -118,14 +124,14 @@ def sttRecognition(gcs_uri, client):
 
 from google.cloud import storage
 
-storage_client = storage.Client(project='solution-challenge-kaist')
+storage_client = storage.Client(project='PROJECT_NAME')
 
 # Instantiates a client
 speech_client = speech.SpeechClient()
 
 lg.debug("1")
 # lg.info(list(client.list_buckets(project='solution-challenge-kaist')))
-files = list(storage_client.list_blobs(bucket_or_name='voicephishing_detection_stt', timeout=300))
+files = list(storage_client.list_blobs(bucket_or_name='BUCKET_NAME', timeout=300))
 
 sttAudios = pd.read_csv('stt_audios_utf8.csv').values.tolist()
 sttVideos = pd.read_csv('stt_videos_utf8.csv').values.tolist()
