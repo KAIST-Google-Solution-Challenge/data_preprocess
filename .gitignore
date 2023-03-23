@@ -14,9 +14,14 @@ videos/
 audios_converted/
 videos_converted/
 videos_trimmed/
-final_data/
+!final_data/
+final_data/*
 NIKL_DIALOGUE_2020_v1.3/
 *.csv
+!final_data/negative_data_cp949.csv
+!final_data/positive_data_cp949.csv
+!final_data/negative_data_utf8.csv
+!final_data/positive_data_utf8.csv
 
 ## Test File For Experiments
 test.py
