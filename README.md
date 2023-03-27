@@ -36,16 +36,16 @@ The Code below crawls through Financial Supervisory Service of Korea website, an
 You should type following commands in order in the terminal.
 
 ```
-python 1_audio_pageurl_collect.py
+python 01_audio_pageurl_collect.py
 ```
 ```
-python 2_audio_srcurl_collect.py
+python 02_audio_srcurl_collect.py
 ```
 ```
-python 3_audio_src_download.py
+python 03_audio_src_download.py
 ```
 ```
-python 4_audio_convert.py
+python 04_audio_convert.py
 ```
 
 2. We should web-scrape the Video Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).
@@ -54,19 +54,19 @@ The Code below crawls through Financial Supervisory Service of Korea website, an
 You should type following commands in order in the terminal.
 
 ```
-python 5_video_pageurl_collect.py
+python 05_video_pageurl_collect.py
 ```
 ```
-python 6_video_srcurl_collect.py
+python 06_video_srcurl_collect.py
 ```
 ```
-python 7_video_src_download.py
+python 07_video_src_download.py
 ```
 ```
-python 8_video_trim_src.py
+python 08_video_trim_src.py
 ```
 ```
-python 9_video_convert.py
+python 09_video_convert.py
 ```
 
 3. We should call speech to text api call from  [`Google Cloud Speech To Text`](https://cloud.google.com/speech-to-text/docs/libraries?hl=ko) following  [`This Link`](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/speech/longrunningrecognize).
