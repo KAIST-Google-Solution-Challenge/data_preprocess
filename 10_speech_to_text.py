@@ -128,8 +128,6 @@ sttVideos = pd.read_csv('stt_videos_utf8.csv').values.tolist()
 # print(sttVideos)
 # print(sttAudios)
 
-import pdb
-
 # for index in [129, 138, 148]:
 #     file = files[index]
 #     print(str(index) + " : ")
@@ -181,7 +179,6 @@ try:
             # sttAudios.to_csv('stt_audios_utf8.csv', index=False)
             dataAudios.to_csv('stt_audios_utf8.csv', index=False)
             dataAudios.to_csv('stt_audios_cp949.csv', index=False, encoding='cp949')
-            # pdb.set_trace()
         lg.warning(tokenizeResults)
         lg.debug(sttAudios)
     lg.debug("successfully done!")
