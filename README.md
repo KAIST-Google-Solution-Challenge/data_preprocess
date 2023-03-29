@@ -29,6 +29,7 @@ GCLOUD_STORAGE_BUCKET = {your-bucket-name}
 ```
 
 ### Run
+0. 'audios', 'audios_converted', 'videos', 'videos_converted', 'videos_trimmed', 'final_data' directories must exist in the src directory.
 
 1. We should web-scrape the Audio Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).`
 
@@ -63,18 +64,22 @@ python 06_video_srcurl_collect.py
 python 07_video_src_download.py
 ```
 ```
-python 08_video_trim_src.py
+python 08_video_convert.py
 ```
 ```
-python 09_video_convert.py
+python 09_video_trim_src.py
 ```
 
 3. We should call speech to text api call from  [`Google Cloud Speech To Text`](https://cloud.google.com/speech-to-text/docs/libraries?hl=ko) following  [`This Link`](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/speech/longrunningrecognize).
 You should type following command in the terminal.
 
+***Before That*** You must upload all your .wav files in the audios_converted directory and vidoes_trimmed directory, to Google Cloud Storage Bucket.
+Upload audios_converted directory's files to 'audios' directory in the bucket, and videos_trimmed directory's files to 'videos' directory in the bucket.
+
 ```
 python 10_speech_to_text.py
 ```
+After this process, combine all the entries in 'stt_videos_cp949.csv' file, 'stt_videos_cp949.csv' file and 'audio_srcurl_withcripts.csv' file and create 'final_data/positive_data_cp949.csv' using ***Microsoft Excel***
 
 4. We should collect the voicephishing-negative train sets.
 

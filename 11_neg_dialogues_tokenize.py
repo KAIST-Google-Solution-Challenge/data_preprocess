@@ -67,13 +67,16 @@ dialogues = list()
 directoryPath = 'NIKL_DIALOGUE_2020_v1.3'
 
 jsonFiles = os.listdir(directoryPath)
-for fileName in jsonFiles:
+for index, fileName in enumerate(jsonFiles):
     if not fileName.endswith('.json'):
         continue
     filePath = f'{directoryPath}/{fileName}'
     dialogue = corpusesToSentences(filePath)
     dialogues.append(dialogue)
+    print(f"{index}th file handled.")
 
 
 dialoguesDataFrame = pd.DataFrame(dialogues)
-dialoguesDataFrame.to_csv('final_data/negative_data.csv', index = False)
+dialoguesDataFrame = dialoguesDataFrame.applymap(lambda x: x.replace('\xa0','').replace('\xa9','') if type(x) is type('str') else x)
+dialoguesDataFrame.to_csv('final_data/negative_data_utf8.csv', index = False)
+dialoguesDataFrame.to_csv('final_data/negative_data_cp949.csv', index = False, encoding = 'cp949')

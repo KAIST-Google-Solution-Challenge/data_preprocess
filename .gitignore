@@ -9,11 +9,16 @@ venv.bak/
 __pycache__/
 
 ## Resource Not Shared
-audios/
-videos/
-audios_converted/
-videos_converted/
-videos_trimmed/
+!audios/
+!videos/
+!audios_converted/
+!videos_converted/
+!videos_trimmed/
+audios/*
+videos/*
+audios_converted/*
+videos_converted/*
+videos_trimmed/*
 !final_data/
 final_data/*
 NIKL_DIALOGUE_2020_v1.3/

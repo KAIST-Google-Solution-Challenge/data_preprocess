@@ -27,9 +27,10 @@ savePath = 'videos_trimmed/'
 
 src_list = os.listdir(sourcePath)
 
-for source in src_list:
+for index, source in enumerate(src_list):
     if source.find('.wav') != -1:
         sourceTrimmed = savePath + source[:-4]
         source = sourcePath + source
+        print(f"{index}th file trimmed.")
 
         trimAudioData(source, sourceTrimmed)
