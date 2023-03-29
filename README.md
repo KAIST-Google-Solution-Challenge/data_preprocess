@@ -31,7 +31,7 @@ GCLOUD_STORAGE_BUCKET = {your-bucket-name}
 ### Run
 0. 'audios', 'audios_converted', 'videos', 'videos_converted', 'videos_trimmed', 'final_data' directories must exist in the home directory.
 They are the destination directories for intermediate or final data files of the whole process.
-They are empty right after when you clone this repository, but it will be fulfilled with intermediate / final data files as you follow the entire procedure.
+They are empty right after when you clone this repository, but it will be filled with intermediate / final data files as you follow the entire procedure.
 
 1. We should web-scrape the Audio Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).`
 
