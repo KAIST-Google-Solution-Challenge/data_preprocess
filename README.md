@@ -8,9 +8,11 @@
 
 ### Dependencies
 
-You need to download following manually or use `docker`.
+You need to download following manually.
 
 [`ffmpeg: 5.1.2`](https://ffmpeg.org/download.html)
+
+All the modules described in 'requirements.txt'
 
 ### Google Cloud Storage Authentication
 
@@ -21,6 +23,8 @@ To access `Google Cloud Storage Bucket` and  [`Google Cloud Speech To Text`](htt
 3. Install `Cloud Storage Client Library` (python in this case) following  [`This Link`](https://cloud.google.com/storage/docs/reference/libraries#python).
 
 ### .env
+
+Create '.env' file in the directory
 
 ```
 # GCLOUD Config
