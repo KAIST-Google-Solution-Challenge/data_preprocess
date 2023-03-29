@@ -29,6 +29,8 @@ __pycache__/logger.cpython-38.pyc
 *.wav
 *.mp3
 *.mp4
+.v_env
+.v_env/*
 
 ## Temporary
 # speech_to_text.py
