@@ -43,16 +43,7 @@ The Code below crawls through Financial Supervisory Service of Korea website, an
 You should type following commands in order in the terminal.
 
 ```
-python3 01_audio_pageurl_collect.py
-```
-```
-python3 02_audio_srcurl_collect.py
-```
-```
-python3 03_audio_src_download.py
-```
-```
-python3 04_audio_convert.py
+./FSS-audio.sh
 ```
 
 2. We should web-scrape the Video Files’ Urls from  [`Financial Supervisory Service of Korea`](https://www.fss.or.kr/fss/bbs/B0000207/list.do?menuNo=200691).
@@ -61,19 +52,7 @@ The Code below crawls through Financial Supervisory Service of Korea website, an
 You should type following commands in order in the terminal.
 
 ```
-python3 05_video_pageurl_collect.py
-```
-```
-python3 06_video_srcurl_collect.py
-```
-```
-python3 07_video_src_download.py
-```
-```
-python3 08_video_convert.py
-```
-```
-python3 09_video_trim_src.py
+./FSS-video.sh
 ```
 
 3. We should call speech to text api call from  [`Google Cloud Speech To Text`](https://cloud.google.com/speech-to-text/docs/libraries?hl=ko) following  [`This Link`](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/speech/longrunningrecognize).
@@ -83,8 +62,9 @@ You should type following command in the terminal.
 Upload audios_converted directory's files to 'audios' directory in the bucket, and videos_trimmed directory's files to 'videos' directory in the bucket.
 
 ```
-python3 10_speech_to_text.py
+./STT.sh
 ```
+
 After this process, combine all the entries in 'stt_videos_cp949.csv' file, 'stt_videos_cp949.csv' file and 'audio_srcurl_withcripts.csv' file and create 'final_data/positive_data_cp949.csv' using ***Microsoft Excel***
 
 4. We should collect the voicephishing-negative train sets.
@@ -95,7 +75,7 @@ The data is in form of each ‘corpus’es in json form, so we should tokenize a
 You should type following command in the terminal.
 
 ```
-python3 11_neg_dialogues_tokenize.py
+./NIKL-negative.sh
 ```
 
 # Result : Train Dataset
